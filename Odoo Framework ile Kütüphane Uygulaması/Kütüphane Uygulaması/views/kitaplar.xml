@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='kitap_action' model='ir.actions.act_window'>
+        <field name="name">Kitaplar</field>
+        <field name="res_model">kitap</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Kütüphane" id="kitaplar_menu" />
+    <menuitem name="Kitaplar" id="kitap_menu" parent="kitaplar_menu" action="kitap_action"/>
+
+    <!-- Kitap Ekleme Sayfası Tasarımı(Form Şeklinde) -->
+    <record id="kitap_view_form" model="ir.ui.view">
+        <field name="name">Kütüphane'ye Kitap Ekleme</field>
+        <field name="model">kitap</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="kitap_kirala" string="Bu Kitabı Kirala" type="object" class="btn-primary"/>
+                    <button name="mevcut_durum" string="Mevcut Kitaplara Ekle" type="object" />
+                    <button name="kiralık_durumu" string="Kiralık Kitaplara Ekle" type="object" />
+                    <button name="kayıp_durumu" string="Kayıp Kitaplara Ekle" type="object" />
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="kategori_id"/>
+                            <field name="kitap_ucreti"/>
+                        </group>
+                        <group>
+                            <field name="yayinlanma_tarihi"/>
+                            <field name="mevcut"/>
+                            <field name="yazar_id" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kitapların Gösterildiği Sayfa Tasarımı (Liste Şeklinde) -->
+    <record id="kitap_view_tree" model="ir.ui.view">
+        <field name="name">Kitap Listesi</field>
+        <field name="model">kitap</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="yayinlanma_tarihi"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Arama Kısmı -->
+    <record id="kitap_view_search" model="ir.ui.view">
+        <field name="name">Kitap Arama</field>
+        <field name="model">kitap</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="yazar_id"/>
+                <filter string="Yazarsız Arama" name="yazarsız_arama" domain="[('yazar_id','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

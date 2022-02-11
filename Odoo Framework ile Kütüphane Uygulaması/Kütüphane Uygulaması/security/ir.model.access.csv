@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+kitap_okuma,kitap_read,model_kitap,,1,0,0,0
+kitap_okumaveyazma,kitap_full,model_kitap,group_kütüphane,1,1,1,1
+kitapkategori_okuma,kitap_kategorisi_read,model_kitap_kategorisi,,1,0,0,0
+kitapkategori_okumaveyazma,kitap_kategorisi_full,model_kitap_kategorisi,group_kütüphane,1,1,1,1
+kitapkiralama_okuma,kitap_kiralama_read,model_kitap_kiralama,,1,0,0,0
+kitapkiralama_okumaveyazma,kitap_kiralama_full,model_kitap_kiralama,group_kütüphane,1,1,1,1
